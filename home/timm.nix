@@ -23,5 +23,6 @@
     python314
     nodejs_24
     unzip
+    neofetch
   ];
 }
