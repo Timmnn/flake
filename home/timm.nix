@@ -10,7 +10,8 @@
     ./modules/fish.nix
     ./modules/vscode.nix
     ./modules/firefox.nix
+    ./modules/neovim/config.nix
   ];
 
-  home.packages = with pkgs; [ neo-cowsay nixfmt _1password-gui ];
+  home.packages = with pkgs; [ neo-cowsay nixfmt _1password-gui gcc eza ];
 }
