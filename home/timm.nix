@@ -13,5 +13,15 @@
     ./modules/neovim/config.nix
   ];
 
-  home.packages = with pkgs; [ neo-cowsay nixfmt _1password-gui gcc eza ];
+  home.packages = with pkgs; [
+    neo-cowsay
+    nixfmt
+    _1password-gui
+    gcc
+    eza
+    google-chrome
+    python314
+    nodejs_24
+    unzip
+  ];
 }
