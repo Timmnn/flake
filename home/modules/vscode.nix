@@ -4,7 +4,8 @@
   programs.vscode = {
     enable = true;
 
-    package = pkgs.vscode; # Or `pkgs.vscodium` if you prefer the open-source build
+    package =
+      pkgs.vscode; # Or `pkgs.vscodium` if you prefer the open-source build
 
     extensions = with pkgs.vscode-extensions; [
       ms-python.python
@@ -19,6 +20,8 @@
       "editor.formatOnSave" = true;
       "files.autoSave" = "onFocusChange";
       "workbench.colorTheme" = "Default Dark+";
+      "workbench.sideBar.location" = "right";
+      "editor.fontSize" = 11;
     };
   };
 }

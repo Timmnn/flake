@@ -12,8 +12,5 @@
     ./modules/firefox.nix
   ];
 
-  home.packages = [
-    pkgs.neo-cowsay
-    pkgs.nixfmt
-  ];
+  home.packages = with pkgs; [ neo-cowsay nixfmt _1password ];
 }
