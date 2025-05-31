@@ -38,5 +38,6 @@
     lua-language-server
     ripgrep
     clippy
+    code-cursor
   ];
 }

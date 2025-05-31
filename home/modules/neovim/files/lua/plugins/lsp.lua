@@ -41,37 +41,6 @@ return {
         on_attach = on_attach,
       }
 
-      -- Setup for Rust with specific settings
-      lspconfig.rust_analyzer.setup {
-        on_attach = on_attach,
-        settings = {
-          ['rust-analyzer'] = {
-            checkOnSave = true,
-            inlayHints = {
-              enable = true,
-              parameterHints = true,
-              typeHints = true,
-            },
-            completion = {
-              autoimport = {
-                enable = true, -- Automatically insert imports for completions
-              },
-            },
-            diagnostics = {
-              experimental = {
-                enable = true, -- Enable experimental diagnostics
-              },
-            },
-            lens = {
-              enable = true, -- Enable code lens for references and implementations
-            },
-            procMacro = {
-              enable = true, -- Enable procedural macro support
-            },
-          },
-        },
-      }
-
       -- Setup for Java
       lspconfig.jdtls.setup {
         on_attach = on_attach,
@@ -124,11 +93,4 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
-
-  --[[{
-    'mrcjkb/rustaceanvim',
-    version = '^6', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },]]
-  --
 }
