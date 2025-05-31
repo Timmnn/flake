@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  programs.rustup = { enable = true; };
+}

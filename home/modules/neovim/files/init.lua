@@ -29,6 +29,7 @@ require('lazy').setup({ { import = 'plugins' } }, {
       lazy = '💤 ',
     },
   },
+  root = vim.fn.stdpath 'data' .. '/lazy',
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`

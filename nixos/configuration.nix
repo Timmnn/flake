@@ -52,7 +52,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ fish ];
+
+  programs.fish.enable = true;
+
   system.stateVersion = "25.05";
 
 }

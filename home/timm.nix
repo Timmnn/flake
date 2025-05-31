@@ -11,6 +11,8 @@
     ./modules/vscode.nix
     ./modules/firefox.nix
     ./modules/neovim/config.nix
+    ./modules/alacritty.nix
+    #./modules/rust.nix
   ];
 
   home.packages = with pkgs; [
@@ -24,5 +26,17 @@
     nodejs_24
     unzip
     neofetch
+    fishPlugins.tide
+    meslo-lgs-nf
+    tldr
+    xclip
+    rustc
+    cargo
+    rust-analyzer
+    bat
+    stylua
+    lua-language-server
+    ripgrep
+    clippy
   ];
 }

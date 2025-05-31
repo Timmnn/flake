@@ -20,6 +20,27 @@ return {
         on_attach = on_attach,
       }
 
+      lspconfig.pest_ls.setup {
+        on_attach = on_attach,
+        filetypes = { 'pest' },
+        settings = {
+          pest = {
+            -- Add any pest-specific settings here if needed
+          },
+        },
+      }
+
+      lspconfig.typescript.setup {
+        on_attach = on_attach,
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+        root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', '.git'),
+      }
+
+      -- Setup for Python
+      lspconfig.pyright.setup {
+        on_attach = on_attach,
+      }
+
       -- Setup for Rust with specific settings
       lspconfig.rust_analyzer.setup {
         on_attach = on_attach,
@@ -49,27 +70,6 @@ return {
             },
           },
         },
-      }
-
-      lspconfig.pest_ls.setup {
-        on_attach = on_attach,
-        filetypes = { 'pest' },
-        settings = {
-          pest = {
-            -- Add any pest-specific settings here if needed
-          },
-        },
-      }
-
-      lspconfig.typescript.setup {
-        on_attach = on_attach,
-        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-        root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', '.git'),
-      }
-
-      -- Setup for Python
-      lspconfig.pyright.setup {
-        on_attach = on_attach,
       }
 
       -- Setup for Java
@@ -124,4 +124,11 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
+
+  --[[{
+    'mrcjkb/rustaceanvim',
+    version = '^6', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },]]
+  --
 }
