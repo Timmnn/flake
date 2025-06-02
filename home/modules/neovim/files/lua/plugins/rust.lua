@@ -22,6 +22,7 @@ return {
           vim.keymap.set('n', '<leader>st', '<Cmd>RustLsp hover actions<CR>', bufopts)
 
           vim.keymap.set('n', '<C-w>d', '<Cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
+          vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', bufopts)
         end,
       },
     }

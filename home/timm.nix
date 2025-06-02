@@ -22,7 +22,7 @@
     gcc
     eza
     google-chrome
-    python314
+python312Full
     nodejs_24
     unzip
     neofetch
@@ -39,5 +39,22 @@
     ripgrep
     clippy
     code-cursor
+    clang-tools
+    discord
+    vesktop
+    vlc
+    jetbrains.pycharm-professional
+    openvpn3
+    p7zip
+    openvpn
+    uv
+    python312Packages.magic
+    file
+    maturin
+    python312Packages.typecode-libmagic
+
   ];
+
+
 }
+

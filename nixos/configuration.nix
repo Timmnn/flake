@@ -52,10 +52,24 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [ fish ];
+environment.systemPackages = with pkgs; [
+  fish
+  openvpn3
+  openvpn
+  libffi
+  libffi.dev
+  pkg-config
+];
 
   programs.fish.enable = true;
 
   system.stateVersion = "25.05";
+
+
+
+
+
+
+
 
 }
