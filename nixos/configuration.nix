@@ -53,22 +53,45 @@
   nixpkgs.config.allowUnfree = true;
 
 environment.systemPackages = with pkgs; [
-  fish
+  # VPN
   openvpn3
   openvpn
+
+  # Libmagic Dependencies
   libffi
   libffi.dev
+  python312Packages.magic
+  python312Packages.typecode-libmagic
+
+  # Build tools
+  gcc
   pkg-config
+
+  # Misc
+  neo-cowsay
+
+  # Formatters + LSPs
+  nixfmt
+  stylua
+  lua-language-server
+
+  # CLI-Tools
+  eza
+  unzip
+  neofetch
+  tldr
+  file
+  bat
+  clang-tools
+  ripgrep
+  p7zip
+
+
 ];
 
   programs.fish.enable = true;
 
   system.stateVersion = "25.05";
-
-
-
-
-
 
 
 

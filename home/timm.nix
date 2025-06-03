@@ -16,45 +16,36 @@
   ];
 
   home.packages = with pkgs; [
-    neo-cowsay
-    nixfmt
-    _1password-gui
-    gcc
-    eza
-    google-chrome
-python312Full
-    nodejs_24
-    unzip
-    neofetch
+    # Fish Shell
+    fish
     fishPlugins.tide
-    meslo-lgs-nf
-    tldr
-    xclip
+
+    # IDE
+    code-cursor
+    jetbrains.pycharm-professional
+
+
+    # Desktop Apps
+    _1password-gui
+    google-chrome
+    vlc
+    discord
+    vesktop
+
+    # Programming Langugages
+    python312Full
+    nodejs_24
+    uv
     rustc
     cargo
     rust-analyzer
-    bat
-    stylua
-    lua-language-server
-    ripgrep
     clippy
-    code-cursor
-    clang-tools
-    discord
-    vesktop
-    vlc
-    jetbrains.pycharm-professional
-    openvpn3
-    p7zip
-    openvpn
-    uv
-    python312Packages.magic
-    file
-    maturin
-    python312Packages.typecode-libmagic
 
+    # Fonts
+    meslo-lgs-nf
+
+    # Gnome Packages
+    xclip
   ];
-
-
 }
 
