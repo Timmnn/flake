@@ -35,19 +35,9 @@ require('lazy').setup({ { import = 'plugins' } }, {
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
-require('nvim-treesitter.parsers').get_parser_configs().fusion = {
-  install_info = {
-    url = '/home/timm/Dev/fusion3/treesitter-fusion/', -- Local path or Git URL
-    files = { 'src/parser.c' }, -- or parser.cc if C++
-    -- optionally, if you have a scanner
-    -- generate_requires_npm = false,
-    -- requires_generate_from_grammar = true,
-  },
-  filetype = 'fusion', -- This should match the filetype you define below
-}
-
-vim.filetype.add {
-  extension = {
-    fu = 'fusion',
-  },
-}
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+  pattern = '*.fu',
+  callback = function()
+    vim.cmd 'TSBufEnable highlight'
+  end,
+})

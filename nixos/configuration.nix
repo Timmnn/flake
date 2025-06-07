@@ -71,7 +71,7 @@ environment.systemPackages = with pkgs; [
   neo-cowsay
 
   # Formatters + LSPs
-  nixfmt
+  nixfmt-classic
   stylua
   lua-language-server
 
@@ -130,6 +130,24 @@ environment.systemPackages = with pkgs; [
   programs.fish.enable = true;
 
   system.stateVersion = "25.05";
+
+
+
+
+  # Enable VirtualBox
+  virtualisation.virtualbox.host.enable = true;
+
+  # Use the correct kernel module package
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  # If you're using EFI Secure Boot, disable or handle module signing manually
+  boot.kernelModules = [ "vboxdrv" "vboxnetflt" "vboxnetadp" "vboxpci" ];
+  boot.blacklistedKernelModules = [ "kvm_amd" "kvm" ];
+
+
+
+  # Add yourself to the vboxusers group
+  users.users.timm.extraGroups = [ "vboxusers" ];
 
 
 

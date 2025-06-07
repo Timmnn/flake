@@ -40,6 +40,7 @@
     cargo
     rust-analyzer
     clippy
+    typescript
 
     # Fonts
     meslo-lgs-nf
