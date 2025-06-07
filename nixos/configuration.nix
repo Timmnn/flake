@@ -85,6 +85,44 @@ environment.systemPackages = with pkgs; [
   clang-tools
   ripgrep
   p7zip
+  tree-sitter
+  gnumake
+  cmakeCurses
+
+  # SDL3 runtime dependencies
+  xorg.libX11
+  xorg.libXext
+  xorg.libXrandr
+  xorg.libXinerama
+  xorg.libXcursor
+  xorg.libXi
+  xorg.libXfixes
+  xorg.libXScrnSaver
+  xorg.libXcomposite
+  xorg.libXdamage
+  xorg.libXtst
+  
+  # Audio
+  alsa-lib
+  pulseaudio
+  pipewire
+  
+  # Video/Graphics
+  libGL
+  mesa
+  vulkan-loader
+  vulkan-headers
+  
+  # Input
+  libudev-zero  # or systemd for udev
+  
+  # Wayland (optional, for Wayland support)
+  wayland
+  wayland-protocols
+  libxkbcommon
+  
+  # Additional multimedia
+  libsamplerate
 
 
 ];
