@@ -20,29 +20,21 @@
       "files.autoSave" = "onFocusChange";
       "workbench.colorTheme" = "Catppuccin Macchiato";
       "workbench.sideBar.location" = "right";
-      "tree-sitter-vscode.languageConfigs" = [
-        {
-          lang = "xyz";
-          parser = "/path/to/your/tree-sitter-xyz.wasm";
-          highlights = "/path/to/your/highlights.scm";
-          injections = "/path/to/your/injections.scm";
-          semanticTokenTypeMappings = {
-            constant = {
-              targetTokenModifiers = [ "declaration" "readonly" ];
-              targetTokenType = "variable";
-            };
-            module = {
-              targetTokenType = "namespace";
-            };
-            "variable.member" = {
-              targetTokenType = "property";
-            };
-            "variable.parameter" = {
-              targetTokenType = "parameter";
-            };
+      "tree-sitter-vscode.languageConfigs" = [{
+        lang = "xyz";
+        parser = "/path/to/your/tree-sitter-xyz.wasm";
+        highlights = "/path/to/your/highlights.scm";
+        injections = "/path/to/your/injections.scm";
+        semanticTokenTypeMappings = {
+          constant = {
+            targetTokenModifiers = [ "declaration" "readonly" ];
+            targetTokenType = "variable";
           };
-        }
-      ];
+          module = { targetTokenType = "namespace"; };
+          "variable.member" = { targetTokenType = "property"; };
+          "variable.parameter" = { targetTokenType = "parameter"; };
+        };
+      }];
     };
   };
 }

@@ -1,154 +1,116 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix ./locale.nix ./users.nix ./bootloader.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./locale.nix
+    ./users.nix
+    ./bootloader.nix
+    ./x11.nix
+    ./sound.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  home-manager.backupFileExtension = "backup";
-
+  home-manager.backupFileExtension = "home_manager_backup";
   networking.hostName = "timm-nixos";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+  # Enable NetworkManager
   networking.networkmanager.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
+  # Enable CUPS (Common unix printing service) for printing
   services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-environment.systemPackages = with pkgs; [
-  # VPN
-  openvpn3
-  openvpn
+  # System packages
+  environment.systemPackages = with pkgs; [
+    # VPN
+    openvpn3
+    openvpn
 
-  # Libmagic Dependencies
-  libffi
-  libffi.dev
-  python312Packages.magic
-  python312Packages.typecode-libmagic
+    # Libmagic Dependencies
+    libffi
+    libffi.dev
+    python312Packages.magic
+    python312Packages.typecode-libmagic
 
-  # Build tools
-  gcc
-  pkg-config
+    # Build tools
+    gcc
+    pkg-config
 
-  # Misc
-  neo-cowsay
+    # Formatters + LSPs
+    nixfmt-classic
+    stylua
+    lua-language-server
 
-  # Formatters + LSPs
-  nixfmt-classic
-  stylua
-  lua-language-server
+    # CLI Tools
+    eza
+    unzip
+    neofetch
+    tldr
+    file
+    bat
+    clang-tools
+    ripgrep
+    p7zip
+    tree-sitter
+    gnumake
+    cmakeCurses
 
-  # CLI-Tools
-  eza
-  unzip
-  neofetch
-  tldr
-  file
-  bat
-  clang-tools
-  ripgrep
-  p7zip
-  tree-sitter
-  gnumake
-  cmakeCurses
+    # SDL3 runtime dependencies
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrandr
+    xorg.libXinerama
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXfixes
+    xorg.libXScrnSaver
+    xorg.libXcomposite
+    xorg.libXdamage
+    xorg.libXtst
 
-  # SDL3 runtime dependencies
-  xorg.libX11
-  xorg.libXext
-  xorg.libXrandr
-  xorg.libXinerama
-  xorg.libXcursor
-  xorg.libXi
-  xorg.libXfixes
-  xorg.libXScrnSaver
-  xorg.libXcomposite
-  xorg.libXdamage
-  xorg.libXtst
-  
-  # Audio
-  alsa-lib
-  pulseaudio
-  pipewire
-  
-  # Video/Graphics
-  libGL
-  mesa
-  vulkan-loader
-  vulkan-headers
-  
-  # Input
-  libudev-zero  # or systemd for udev
-  
-  # Wayland (optional, for Wayland support)
-  wayland
-  wayland-protocols
-  libxkbcommon
-  
-  # Additional multimedia
-  libsamplerate
+    # Audio
+    alsa-lib
+    pulseaudio
+    pipewire
 
+    # Video/Graphics
+    libGL
+    mesa
+    vulkan-loader
+    vulkan-headers
 
-];
+    # Input
+    libudev-zero
 
+    # Wayland
+    wayland
+    wayland-protocols
+    libxkbcommon
+
+    # Additional multimedia
+    libsamplerate
+
+    # Hyprland and related
+    hyprland
+    xdg-desktop-portal-hyprland
+    swaylock
+    swayidle
+    wofi
+    swww # Wallpaper switcher for Wayland
+    bluez # Provides bluetoothctl for Bluetooth support
+    ddcutil # Display control
+    fd # Fast file finder for wallpaper scanning
+    rofi-wayland # Optional: for application launcher
+
+  ];
+
+  # Enable fish shell
   programs.fish.enable = true;
 
+  # System state version
   system.stateVersion = "25.05";
-
-
-
-
-  # Enable VirtualBox
-  virtualisation.virtualbox.host.enable = true;
-
-  # Use the correct kernel module package
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-
-  # If you're using EFI Secure Boot, disable or handle module signing manually
-  boot.kernelModules = [ "vboxdrv" "vboxnetflt" "vboxnetadp" "vboxpci" ];
-  boot.blacklistedKernelModules = [ "kvm_amd" "kvm" ];
-
-
-
-  # Add yourself to the vboxusers group
-  users.users.timm.extraGroups = [ "vboxusers" ];
-
-
 
 }

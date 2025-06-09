@@ -1,7 +1,8 @@
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
 parser_config.fusion4 = {
   install_info = {
-    url = 'https://github.com/Timmnn/tree-sitter-fusion4',
+    --url = 'https://github.com/Timmnn/tree-sitter-fusion4',
+    url = '/home/timm/Dev/tree-sitter-fusion4',
     files = { 'src/parser.c' },
     branch = 'main',
   },

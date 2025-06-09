@@ -1,12 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 
-{
+let modulePackages = with pkgs; [ alacritty ];
+in {
+  home.packages = modulePackages;
+
   programs.alacritty = {
     enable = true;
-    settings = {
-      font = {
-        size = 8.5; # <-- Set your desired font size here
-      };
-    };
+    settings = { font = { size = 8.5; }; };
   };
 }
