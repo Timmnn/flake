@@ -30,7 +30,7 @@ return {
         },
       }
 
-      lspconfig.typescript.setup {
+      lspconfig.ts_ls.setup {
         on_attach = on_attach,
         filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
         root_dir = lspconfig.util.root_pattern('package.json', 'tsconfig.json', '.git'),

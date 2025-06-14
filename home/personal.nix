@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, quickshell, ... }:
 
 let alacrittyModule = import ./modules/alacritty.nix { inherit pkgs; };
 
@@ -13,8 +13,10 @@ in {
     ./modules/vscode.nix
     ./modules/firefox.nix
     ./modules/neovim/config.nix
+    ./modules/eww/config.nix
     ./modules/alacritty.nix
     ./modules/hyprland.nix
+    ./modules/quickshell/config.nix
     #./modules/rust.nix
   ];
 
@@ -36,7 +38,11 @@ in {
       vesktop
       spotify
       xclicker
+      dbeaver-bin
       libreoffice
+      libsForQt5.ghostwriter
+      libsForQt5.dolphin
+      kdePackages.qtsvg
 
       # Programming Langugages
       python312Full
@@ -53,6 +59,17 @@ in {
 
       # Gnome Packages
       xclip
+
+
+    nerd-fonts.fira-code
+      eww
+
+
+      quickshell.packages.${system}.default
+
+
+
     ] ++ alacrittyModule.home.packages;
+
 }
 

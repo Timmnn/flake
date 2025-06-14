@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   # Keymap
   services.xserver.xkb = {
-    layout = "eu";
+    layout = "us";
     variant = "";
   };
 

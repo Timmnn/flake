@@ -2,6 +2,8 @@ rec { # <--- Add 'rec' here
   primary = "#6D9DC5";
 
   # Function to convert rgba(RRGGBBAA) to #RRGGBB
+  max = a: b: if a > b then a else b;
+  mod = a: b: a - (b * (a / b));
   rgbaToHex = rgbaColor:
     let
       # Extract the hexadecimal color and alpha parts
@@ -82,7 +84,7 @@ rec { # <--- Add 'rec' here
         else
           throw "Invalid integer for hex char: ${builtins.toString n}";
       firstDigit = builtins.div int 16;
-      secondDigit = builtins.mod int 16;
+      secondDigit = mod int 16;
     in "${intToHexChar firstDigit}${intToHexChar secondDigit}";
 
   # Function to darken a hex color by a given percentage
@@ -103,9 +105,9 @@ rec { # <--- Add 'rec' here
       darkeningFactor = (builtins.div (percentage * 1.0) 100.0);
 
       # Apply darkening and ensure values don't go below 0
-      newR = builtins.max 0 (r - builtins.floor (r * darkeningFactor));
-      newG = builtins.max 0 (g - builtins.floor (g * darkeningFactor));
-      newB = builtins.max 0 (b - builtins.floor (b * darkeningFactor));
+      newR = max 0 (r - builtins.floor (r * darkeningFactor));
+      newG = max 0 (g - builtins.floor (g * darkeningFactor));
+      newB = max 0 (b - builtins.floor (b * darkeningFactor));
 
       # Convert new RGB values back to hex
       newHexR = intToHex newR; # <--- intToHex is now defined

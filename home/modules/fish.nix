@@ -21,6 +21,29 @@
       set -g tide_prompt_spacing Sparse
       set -g tide_icons Many
       set -g tide_transient_prompt No
+
+
+
+
+      function ns
+        pushd ~/flake
+        git add --all
+        sudo nixos-rebuild switch --flake ~/flake
+        popd
+      end
+
+
+
+      function qsdev
+        if test (count $argv) -eq 0
+          echo "Usage: qsdev <widget>"
+          return 1
+        end
+
+        ns
+        qs -c $argv[1]
+      end
+
     '';
   };
 

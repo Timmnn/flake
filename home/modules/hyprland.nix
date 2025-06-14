@@ -4,7 +4,7 @@ let
   colors = import ../../colors.nix;
 
   activeBorder = colors.hexToRgba colors.primary;
-  inactiveBorder = colors.hexToRgba (colors.darken colors.primary 20);
+  inactiveBorder = colors.hexToRgba (colors.darken colors.primary 50);
 in {
 
   wayland.windowManager.hyprland = {
@@ -46,7 +46,7 @@ in {
         allow_tearing = false;
         layout = "dwindle";
         "col.active_border" = activeBorder;
-        "col.inactive_border" = activeBorder;
+        "col.inactive_border" = inactiveBorder;
 
       };
 

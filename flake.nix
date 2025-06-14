@@ -7,38 +7,50 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #TODO: is this still needed?
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, rust-overlay, ... }:
+  outputs = { self, nixpkgs, home-manager, rust-overlay, quickshell, stylix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
-        # Allows software with unfree licenses
         config.allowUnfree = true;
       };
     in {
       nixosConfigurations = {
         timm-nixos = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit system; };
+          # remove specialArgs here!
           modules = [
-            # System config
+            stylix.nixosModules.stylix
             ./nixos/configuration.nix
-            # HomeManager setup
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+
+              # Pass quickshell to the home-manager user like this:
               home-manager.users.timm = import ./home/personal.nix;
+
+              # Add extraSpecialArgs here:
+              home-manager.extraSpecialArgs = {
+                inherit quickshell system pkgs;
+              };
+
             }
             ({ pkgs, ... }: {
-              #TODO: is this still needed?
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = with pkgs;
                 [ rust-bin.stable.latest.default ];
